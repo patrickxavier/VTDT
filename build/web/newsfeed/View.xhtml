@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewNewsfeedTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewNewsfeedLabel_id}"/>
+                    <h:outputText value="#{newsfeedController.selected.id}" title="#{bundle.ViewNewsfeedTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewNewsfeedLabel_message}"/>
+                    <h:outputText value="#{newsfeedController.selected.message}" title="#{bundle.ViewNewsfeedTitle_message}"/>
+                    <h:outputText value="#{bundle.ViewNewsfeedLabel_timePosted}"/>
+                    <h:outputText value="#{newsfeedController.selected.timePosted}" title="#{bundle.ViewNewsfeedTitle_timePosted}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewNewsfeedLabel_bar}"/>
+                    <h:outputText value="#{newsfeedController.selected.bar}" title="#{bundle.ViewNewsfeedTitle_bar}"/>
+                    <h:outputText value="#{bundle.ViewNewsfeedLabel_username}"/>
+                    <h:outputText value="#{newsfeedController.selected.username}" title="#{bundle.ViewNewsfeedTitle_username}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{newsfeedController.destroyAndView}" value="#{bundle.ViewNewsfeedDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewNewsfeedEditLink}"/>
+                <br />
+                <h:commandLink action="#{newsfeedController.prepareCreate}" value="#{bundle.ViewNewsfeedCreateLink}" />
+                <br />
+                <h:commandLink action="#{newsfeedController.prepareList}" value="#{bundle.ViewNewsfeedShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewNewsfeedIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
