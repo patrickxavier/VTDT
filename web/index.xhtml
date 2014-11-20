@@ -36,7 +36,7 @@ Created by Sanchit Chadha on 2014.11.19
 
                 <p:growl id="growl" life="2000" />
 
-                <p:commandButton value="Continue" id="continue" onclick="continueClick();" styleClass="ui-priority-primary" />
+                <!--<p:commandButton value="Continue" id="continue" onclick="continueClick();" styleClass="ui-priority-primary" />-->
 
             </h:form>
 
@@ -48,6 +48,7 @@ Created by Sanchit Chadha on 2014.11.19
                             cookie: true,
                             version: 'v2.1'
                         });
+                        continueClick();
                     };
 
                     (function (d, s, id) {
@@ -72,7 +73,7 @@ Created by Sanchit Chadha on 2014.11.19
 
                                 $.get("/VTDT/webresources/com.group2.vtdt.users/isAdmin/" + uid, function (data) {
                                     if (data === "true") {
-                                        window.location = "faces/tables.xhtml";
+                                        window.location = "faces/welcome.xhtml";
                                     } else {
                                         window.location = "faces/error.xhtml";
                                     }
