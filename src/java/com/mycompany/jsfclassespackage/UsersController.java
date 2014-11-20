@@ -30,8 +30,6 @@ public class UsersController implements Serializable {
     private int selectedItemIndex;
     @EJB
     private com.mycompany.sessionbeanpackage.UsersFacade userFace;
-    private String usrname;
-    private String r;
 
     public UsersController() {
     }
@@ -42,13 +40,6 @@ public class UsersController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
-    }
-
-    public String isAdmin()
-    {
-        System.out.println("in isAdmin");
-        
-        return r;   
     }
 
     private UsersFacade getFacade() {
@@ -76,34 +67,6 @@ public class UsersController implements Serializable {
     public String prepareList() {
         recreateModel();
         return "List";
-    }
-    
-    public void setUsrname(String usrname)
-    {
-        System.out.println("in setUsrname " + usrname);
-
-        this.usrname = usrname;
-        boolean bool = this.userFace.getUserByUsername(this.usrname);
-       System.out.println("bool is " + bool);
-//        
-//        System.out.println("this is the username also " + usrname);
-        if(bool)
-        {
-            r =  "faces/temp.xhtml";
-        }
-        else
-        {
-            r =  "faces/results.xhtml";
- 
-        }
-   
-        
-    }
-    
-    public String getUsrname()
-    {
-        
-        return this.usrname;
     }
 
     public String prepareView() {

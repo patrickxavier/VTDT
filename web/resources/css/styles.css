@@ -11,6 +11,7 @@ h1 {
 	font-weight: bold;
 	text-decoration: none;
 	color: rgb(11, 11, 11);
+        margin-top: 0px;
 }
 
 h2 {
@@ -29,92 +30,26 @@ h2 {
     }
 
 .text {
-  position: absolute;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.38;
   letter-spacing: -2px;
   color: rgb(83, 80, 80);
-  text-align: right;
-
-}
-
-.text-1 {
-  top: 524px;
-right: 7%;
-  z-index: 5;
-  width: 85.75%;
+  text-align: center;
 }
 
 .text:hover {
   color: #CC6600;
 }
 
-.text-2 {
-  top: 437px;
-  right: 7%;
-  z-index: 4;
-  width: 85.75%;
+.header {
+    text-align: right;
 }
 
-
-.text-1:active{color:#6b22b0;}
-
-.text-2:active {
-  color: rgb(29, 156, 200);
+.logout {
+    font-size: 0.5em;
+    line-height: 1;
 }
-
-.text-3 {
-  top: 350px;
-  right: 7%;
-  z-index: 3;
-  width: 85.75%;
-}
-
-
-.text-3:active {
-  color: rgb(203, 203, 76);
-}
-
-.text-4 {
-  top: 263px;
-  right: 7%;
-  z-index: 2;
-  width: 85.75%;
-}
-
-
-.text-4:active {
-  color: rgb(33, 177, 37);
-}
-
-.text-5 {
-  top: 176px;
-  right: 7%;
-  z-index: 1;
-  width: 85.75%;
-  word-break: break-word;
-  word-wrap: keep-all;
-  white-space: nowrap;
-}
-
-
-.text-5:active {
-  color: rgba(201, 80, 51, 0.99);
-}
-
-.text-6 {
-  top: 109px;
-  right: 7%;
-  width: 85.75%;
-}
-
-
-.text-6:active {
-  color: rgb(59, 38, 202);
-}
-
-
 
 a,
 a:hover,

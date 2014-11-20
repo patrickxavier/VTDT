@@ -1,48 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Created by Patrick Sherman on 2014.09.02 
+Created by Sanchit Chadha on 2014.11.19 
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-          
+
       xmlns:p="http://primefaces.org/ui">
     <link rel="shortcut icon" href="/resources/images/vtdt_image2.jpg"/>
     <h:head>
-        <title>VTDT ADMIN LOGIN PAGE</title>
+
+        <title>VTDT Admin Login</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
+        <script src="resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <center>
 
         <h:body>
-  
-            <script>
-                
-                window.fbAsyncInit = function () {
-                    FB.init({
-                        appId: '797169993681370',
-                        xfbml: true,
-                        version: 'v2.1'
-                    });
-                    
-                };
 
-                (function (d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) {
-                        return;
-                    }
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = "https://connect.facebook.net/en_US/sdk.js";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-
-
-            </script>
-            
             <h:outputStylesheet library="css" name="styles.css"/>
             <h:form id="dataEntry">
 
@@ -55,99 +33,59 @@ Created by Patrick Sherman on 2014.09.02
                 <div id="status">
                 </div>
 
-                <h:inputHidden id="nameInputHiddenId" value="#{usersController.usrname}" />
 
-        <p:growl id="growl" life="2000" />
-     
-        <p:commandButton value="Continue" id="continue2" onclick="isAdmin();" styleClass="ui-priority-primary" />
+                <p:growl id="growl" life="2000" />
 
-     </h:form>
-            
+                <p:commandButton value="Continue" id="continue" onclick="continueClick();" styleClass="ui-priority-primary" />
+
+            </h:form>
+
             <script>
-
-                    var uid = "nope";
-                    var temp = null;
-                    function statusChangeCallback(response) {
-                        console.log('statusChangeCallback');
-                        console.log(response);
-
-                        if (response.status === 'connected') {
-                            uid = response.authResponse.userID;
-                             document.getElementById('dataEntry:nameInputHiddenId').setAttribute("value", uid);
-                            console.log(response.authResponse.userID);
-                            testAPI();
-
-                        } else if (response.status === 'not_authorized') {
-
-                            document.getElementById('status').innerHTML = 'Please log ' +
-                                    'into this app.';
-
-                        } else {
-
-                            document.getElementById('status').innerHTML = 'Please log ' +
-                                    'into Facebook.';
-
-                        }
-                    }
-
-                    function checkLoginState() {
-                        FB.getLoginStatus(function (response) {
-                            statusChangeCallback(response);
-                        });
-                    }
-
-                    function isAdmin()
-                    {
-                        console.log("in js isadmin");
-
-                        checkLoginState();
-
-                        
-                         var admin =  "#{usersController.isAdmin()}";
-                         console.log(admin);
-
-                      
-                           console.log("In if");
-                            window.location = admin;
-                        
-                   
-
-                    }
-
                     window.fbAsyncInit = function () {
                         FB.init({
                             appId: '797169993681370',
-                            cookie: true, 
-                            xfbml: true, 
-                            version: 'v2.1' 
+                            xfbml: true,
+                            cookie: true,
+                            version: 'v2.1'
                         });
-
-                        FB.getLoginStatus(function (response) {
-                            statusChangeCallback(response);
-                        });
-
                     };
 
                     (function (d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id))
+                        if (d.getElementById(id)) {
                             return;
+                        }
                         js = d.createElement(s);
                         js.id = id;
                         js.src = "https://connect.facebook.net/en_US/sdk.js";
                         fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));
 
-                    function testAPI() {
-                        console.log('Welcome!  Fetching your information.... ');
-                        FB.api('/me', function (response) {
-                            console.log('Successful login for: ' + response.name);
+                    function continueClick() {
+                        FB.getLoginStatus(function (response) {
+                            console.log('statusChangeCallback');
+                            console.log(response);
 
+                            if (response.status === 'connected') {
+                                var uid = response.authResponse.userID;
+                                console.log(uid);
+
+                                $.get("/VTDT/webresources/com.group2.vtdt.users/isAdmin/" + uid, function (data) {
+                                    if (data === "true") {
+                                        window.location = "faces/tables.xhtml";
+                                    } else {
+                                        window.location = "faces/error.xhtml";
+                                    }
+                                });
+                            } else if (response.status === 'not_authorized') {
+                                document.getElementById('status').innerHTML = 'Please log into this app.';
+                            } else {
+                                document.getElementById('status').innerHTML = 'Please log into Facebook.';
+                            }
                         });
                     }
+            </script>
 
-                </script>
-           
         </h:body>
 
     </center>

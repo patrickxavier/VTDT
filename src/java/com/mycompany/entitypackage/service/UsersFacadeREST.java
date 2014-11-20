@@ -39,6 +39,26 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     public void create(Users entity) {
         super.create(entity);
     }
+    
+    @GET
+    @Path("isAdmin/{username}")
+    public boolean isAdmin(@PathParam("username") String username) {
+        Users u = null;
+        Query query = em.createNamedQuery("Users.findByUsername");
+        query.setParameter("username", username);
+        try{
+            u = (Users) query.getSingleResult();
+         }
+        catch(Exception e){
+
+        }
+        
+        if(u == null)
+        {
+            return false;
+        }
+        else return u.getAdmin() == 1;
+    }
 
     @PUT
     @Path("{id}")

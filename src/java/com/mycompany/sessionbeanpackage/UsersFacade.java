@@ -9,7 +9,6 @@ import java.io.Serializable;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -28,40 +27,4 @@ public class UsersFacade extends AbstractFacade<Users>  implements Serializable{
     public UsersFacade() {
         super(Users.class);
     }
-    
-    /**
-     *
-     * @param username
-     * @return
-     */
-    public boolean getUserByUsername(String username)
-    {
-        
-        Users u = null;
-        Query query = em.createNamedQuery("Users.findByUsername");
-        query.setParameter("username", username);
-        try{
-            u = (Users) query.getSingleResult();
-         }
-        catch(Exception e){
-
-        }
-        
-        System.out.println("username is " + username);
-        
-        if(u == null)
-        {
-            return false;
-        }
-
-        else if (u.getAdmin() == 1) {
-            
-             return true;
-        } else {
-
-            return false;
-        }
-        
-    }
-    
 }
