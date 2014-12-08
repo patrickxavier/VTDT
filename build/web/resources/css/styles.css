@@ -1,85 +1,101 @@
 body {
-  background-color: #500000;
-  font: 400 3.938em/1.38 Copperplate;
-  color: rgb(62, 60, 60);
-  min-width: 600px !important;
+    background-color: #500000;
+    color: rgb(62, 60, 60);
+    min-width: 600px !important;
 }
 
 h1 {
-	font: 0.938em/1.38 Copperplate;
-	font-style: normal;
-	font-weight: bold;
-	text-decoration: none;
-	color: rgb(255, 102, 0);
-        margin-top: 0px;
+    font: 400 3.938em/1.38 Copperplate;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(255, 102, 0);
+    margin-top: 0px;
 }
 
 h2 {
-	font: 0.738em/1.38 Copperplate;
-	font-style: normal;
-	font-weight: bold;
-	text-decoration: none;
-	color: rgb(22, 22, 22);
+    font: 400 2.938em/1.38 Copperplate;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
 }
 
+#status {
+    font: 400 1.538em/1.38 Copperplate;
+    font-style: normal;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
 
 *{-webkit-transition: all 0.2s ease;
-      -moz-transition: all 0.2s ease;
-      -o-transition: all 0.2s ease;
-      â€”transition: all 0.2s ease;
-    }
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  â€”transition: all 0.2s ease;
+}
+.jqplot-data-label, .jqplot-title {
+    color:white;
+}
+.jqplot-series-canvas {
+     background-color: #500000; 
+}
+table.jqplot-table-legend{
+    color: white;
 
+}
 .text {
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1.38;
-  letter-spacing: -2px;
-  color: rgb(83, 80, 80);
-  text-align: center;
+    /*font-size: 1em;*/
+    /*font-weight: 400;*/
+    /*line-height: 1.38;*/
+    /*letter-spacing: -2px;*/
+    color: rgb(255, 255, 255);
+    text-align: center;
 }
 
 .text:hover {
-  color: #CC6600;
+    color: #CC6600;
 }
 
 .header {
     text-align: right;
 }
 
-.logout {
-    font-size: 0.5em; 
-    line-height: 1;
+.logout,
+.logout:hover {
+    font-size: 2em;
 }
 
 a,
 a:hover,
 a:visited {
-  text-decoration: none;
+    font: 400 3.938em/1.38 Copperplate;
+    text-decoration: none;
 }
 
 
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
+.clearfix { /* zoom: 1; */ }
 
 
 
 @media  screen and (max-width: 1300px) { 
-/* Styles */
-.text {
-  text-align: center;
-}
+    /* Styles */
+    .text {
+        text-align: center;
+    }
 
 
-@media  screen and (max-width: 1024px) { 
-/* Styles */
-.text {
-text-align: left;
+    @media  screen and (max-width: 1024px) { 
+        /* Styles */
+        .text {
+            text-align: left;
 
-}
-
-
+        }
 
 
-}
+
+
+    }
 }
