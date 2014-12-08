@@ -36,13 +36,21 @@ h2 {
 }
 .jqplot-data-label, .jqplot-title {
     color:white;
+    font-size: 1.5em;
 }
 .jqplot-series-canvas {
      background-color: #500000; 
 }
+.jsfcrud_list_form {
+/*    align-content: center;*/
+    text-align: center;
+    padding-top: 20px;
+}
 table.jqplot-table-legend{
     color: white;
-
+    background-color: transparent;
+    border: none;
+    font-size: 1.25em;
 }
 .text {
     /*font-size: 1em;*/

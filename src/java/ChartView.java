@@ -30,7 +30,7 @@ public class ChartView implements Serializable {
     private JsonArray barArray;
     private JsonArray usersArray;
     private JsonObject object;
-    private static final String URL = "http://localhost:8080//VTDT/webresources/";
+    private static final String URL = "http://jupiter.cs.vt.edu/VTDT-1.0/webresources/";
     
     @PostConstruct
     public void init() {
@@ -56,14 +56,17 @@ public class ChartView implements Serializable {
             jsonString = response.readEntity(String.class);
             reader = Json.createReader(new StringReader(jsonString));
             usersArray = reader.readArray();
-            pieModel.set(object.getString("name"), usersArray.size());
+            if (usersArray.size() != 0) {
+                pieModel.set(object.getString("name"), usersArray.size());
+            }
         }
 
         pieModel.setTitle("People Checked In");
         pieModel.setLegendPosition("w");
         pieModel.setShowDataLabels(true);
         pieModel.setDataFormat("value");
-
+        
+        
     }
 
     public PieChartModel getPieModel() {
