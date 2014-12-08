@@ -4,53 +4,29 @@
     <link rel="shortcut icon" href="/resources/images/vtdt_image2.jpg"/>
     <h:head>
 
-  <script type="text/javascript" src="http://use.typekit.net/hvt1lgx.js"></script>
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script type="text/javascript" src="http://use.typekit.net/hvt1lgx.js"></script>
+        <script type="text/javascript">try {
+                Typekit.load();
+            } catch (e) {
+            }
+        </script>
+        <script src="resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script src="resources/js/facebook.js" type="text/javascript"></script>
         <title>Tables</title>
 
         <h:outputStylesheet name="css/styles.css"/>
 
     </h:head>
-        
-<body class="body clearfix">
-    <div class="header">
-        <a href="/VTDT" class="text logout" onclick="logout()">Logout</a>
-        <script>
-                    window.fbAsyncInit = function () {
-                        FB.init({
-                            appId: '797169993681370',
-                            xfbml: true,
-                            cookie: true,
-                            version: 'v2.1'
-                        });
-//                        continueClick();
-                    };
 
-                    (function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) {
-                            return;
-                        }
-                        js = d.createElement(s);
-                        js.id = id;
-                        js.src = "https://connect.facebook.net/en_US/sdk.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
-//                    
-
-            function logout() {
-                console.log("logout");
-                FB.logout(function(response) {
-                    // user is now logged out
-                });
-            }
-        </script>
-    </div>
-    <center><h1>Database Tables</h1>
-    <a href="bars/List.xhtml" class="text">Bars</a><br/>
-    <a href="specials/List.xhtml" class="text">Specials</a><br/>
-    <a href="users/List.xhtml" class="text">Users</a><br/>
-    <a href="newsfeed/List.xhtml" class="text">Newsfeed</a><br/>
-    <a href="friends/List.xhtml" class="text">Friends</a><br/></center>
-</body>
+    <body class="body clearfix">
+        <div class="header">
+            <a href="/VTDT/faces/welcome.xhtml" class="text logout">Back</a>
+        </div>
+        <center><h1>Database Tables</h1>
+            <a href="bars/List.xhtml" class="text">Bars</a><br/>
+            <a href="specials/List.xhtml" class="text">Specials</a><br/>
+            <a href="users/List.xhtml" class="text">Users</a><br/>
+            <a href="newsfeed/List.xhtml" class="text">Newsfeed</a><br/>
+            <a href="friends/List.xhtml" class="text">Friends</a><br/></center>
+    </body>
 </html>

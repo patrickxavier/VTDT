@@ -14,6 +14,7 @@ Created by Sanchit Chadha on 2014.11.19
         <title>VTDT Admin Login</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
         <script src="resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script src="resources/js/facebook.js" type="text/javascript"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
@@ -29,7 +30,7 @@ Created by Sanchit Chadha on 2014.11.19
                 <h2>VTDT Administrator Login</h2>   
 
                 <div id="fb-root"></div>
-                <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
+                <div class="fb-login-button" onlogin="continueClick()" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
                 <div id="status">
                 </div>
 
@@ -41,50 +42,29 @@ Created by Sanchit Chadha on 2014.11.19
             </h:form>
 
             <script>
-                    window.fbAsyncInit = function () {
-                        FB.init({
-                            appId: '797169993681370',
-                            xfbml: true,
-                            cookie: true,
-                            version: 'v2.1'
-                        });
-                        continueClick();
-                    };
+                function continueClick() {
+                    FB.getLoginStatus(function (response) {
+                        console.log('statusChangeCallback');
+                        console.log(response);
 
-                    (function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) {
-                            return;
+                        if (response.status === 'connected') {
+                            var uid = response.authResponse.userID;
+                            console.log(uid);
+
+                            $.get("/VTDT/webresources/com.group2.vtdt.users/findByUsername/" + uid, function (data) {
+                                if (data.length > 0) {
+                                    window.location = "faces/welcome.xhtml";
+                                } else {
+                                    window.location = "faces/error.xhtml";
+                                }
+                            });
+                        } else if (response.status === 'not_authorized') {
+                            document.getElementById('status').innerHTML = 'Please log into this app.';
+                        } else {
+                            document.getElementById('status').innerHTML = 'Please log into Facebook.';
                         }
-                        js = d.createElement(s);
-                        js.id = id;
-                        js.src = "https://connect.facebook.net/en_US/sdk.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
-
-                    function continueClick() {
-                        FB.getLoginStatus(function (response) {
-                            console.log('statusChangeCallback');
-                            console.log(response);
-
-                            if (response.status === 'connected') {
-                                var uid = response.authResponse.userID;
-                                console.log(uid);
-
-                                $.get("/VTDT/webresources/com.group2.vtdt.users/isAdmin/" + uid, function (data) {
-                                    if (data === "true") {
-                                        window.location = "faces/welcome.xhtml";
-                                    } else {
-                                        window.location = "faces/error.xhtml";
-                                    }
-                                });
-                            } else if (response.status === 'not_authorized') {
-                                document.getElementById('status').innerHTML = 'Please log into this app.';
-                            } else {
-                                document.getElementById('status').innerHTML = 'Please log into Facebook.';
-                            }
-                        });
-                    }
+                    });
+                }
             </script>
 
         </h:body>
