@@ -11,6 +11,8 @@
     <body>
 
     <h:panelGrid columns="2" style="width:45%" columnClasses="newsFeed, other">
+        
+   <h:panelGroup>
     <p:dataScroller value="#{newsFeedView.news}" var="news" chunkSize="20" mode="inline" scrollHeight="500" styleClass="css/dataScroller.css">
         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
             <p:graphicImage url="http://graph.facebook.com/#{news.uid}/picture" height="75" width="75"/> 
@@ -29,7 +31,14 @@
         </h:panelGrid>
 
     </p:dataScroller>
-            </h:panelGrid>
+   </h:panelGroup>
+        <h:panelGroup>
+            <h:outputText value="walking time here"/>
+            <h:outputText value="weather widget here"/>
+            <h:outputText value="pie graph here"/>
+            <h:outputStylesheet name="css/styles.css"/>
+    </h:panelGroup>
+    </h:panelGrid>
     </body>
     
 

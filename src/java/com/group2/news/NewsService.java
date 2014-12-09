@@ -112,7 +112,7 @@ public class NewsService {
             e.printStackTrace();
         }
         
-        return s2 + ", " + s3;
+        return s2 + " on " + s3;
                 
     }
 }
