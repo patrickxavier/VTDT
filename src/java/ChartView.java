@@ -57,6 +57,7 @@ public class ChartView implements Serializable {
             reader = Json.createReader(new StringReader(jsonString));
             usersArray = reader.readArray();
             if (usersArray.size() != 0) {
+                
                 pieModel.set(object.getString("name"), usersArray.size());
             }
         }
