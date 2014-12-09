@@ -106,4 +106,46 @@ a:visited {
 
 
     }
+    
+    #weather_widget * {
+	margin:0px;
+	padding:0px;
+	font-family:arial;
+	font-size:1.10em;
+}
+
+    #weather_widget {
+            border:1px solid #444;
+            background:#FFFFFF;
+            width:350px;
+            padding:15px;
+            overflow:auto;
+    }
+
+    #weather_img {
+            float:left;
+            padding-right:20px;
+            padding-top:10px;
+            padding-left:20px;
+    }
+
+    #weather_city {
+            font-weight:bold;
+    }
+
+    #weather_country {
+            font-size:0.80em;
+    }
+
+    #weather_temp {
+            margin-top:5px;
+    }
+
+    #weather_cond {
+            margin-top:5px;
+    }
+
+    #weather_conditions {
+            float:left;
+    }
 }

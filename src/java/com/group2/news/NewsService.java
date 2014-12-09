@@ -91,10 +91,7 @@ public class NewsService {
         jsonString = response.readEntity(String.class);
 
         reader = Json.createReader(new StringReader(jsonString));
-//        System.out.println(jsonString.);
-//        reader.re
         return reader.readObject().getString("name");
-//        return "";
         
     }
     

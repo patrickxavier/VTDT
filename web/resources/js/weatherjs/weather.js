@@ -6,19 +6,37 @@ $("document").ready(function() {
 	if ($.cookie('loc_longitude') && $.cookie('loc_latitude')) {
 		getWeather();
 	} else {
-		$.getJSON("http://www.geoplugin.net/json.gp?callback=?", function(data) {
-			eval(data);
-		});
+            
+                geoPlugin({
+  "geoplugin_request":"198.82.31.252",
+  "geoplugin_status":200,
+  "geoplugin_credit":"Some of the returned data includes GeoLite data created by MaxMind, available from <a href=\\'http:\/\/www.maxmind.com\\'>http:\/\/www.maxmind.com<\/a>.",
+  "geoplugin_city":"Blacksburg",
+  "geoplugin_region":"VA",
+  "geoplugin_areaCode":"540",
+  "geoplugin_dmaCode":"573",
+  "geoplugin_countryCode":"US",
+  "geoplugin_countryName":"United States",
+  "geoplugin_continentCode":"NA",
+  "geoplugin_latitude":"37.1791",
+  "geoplugin_longitude":"-80.351501",
+  "geoplugin_regionCode":"VA",
+  "geoplugin_regionName":"Virginia",
+  "geoplugin_currencyCode":"USD",
+  "geoplugin_currencySymbol":"&#36;",
+  "geoplugin_currencySymbol_UTF8":"$",
+  "geoplugin_currencyConverter":1
+});
 	}
 });
 
 function geoPlugin(data) {
-	$.cookie('loc_latitude', data.geoplugin_latitude, {expires: 7});	
-	$.cookie('loc_longitude', data.geoplugin_longitude, {expires: 7});
-	$.cookie('loc_country', data.geoplugin_countryName, {expires: 7});
-	$.cookie('loc_region', data.geoplugin_region, {expires: 7});
-	$.cookie('loc_city', data.geoplugin_city, {expires: 7});
-	$.cookie('loc_country_code', data.geoplugin_countryCode, {expires: 7});
+	$.cookie('loc_latitude', data.geoplugin_latitude, {expires: 1});	
+	$.cookie('loc_longitude', data.geoplugin_longitude, {expires: 1});
+	$.cookie('loc_country', data.geoplugin_countryName, {expires: 1});
+	$.cookie('loc_region', data.geoplugin_region, {expires: 1});
+	$.cookie('loc_city', data.geoplugin_city, {expires: 1});
+	$.cookie('loc_country_code', data.geoplugin_countryCode, {expires: 1});
 	getWeather();
 }
 
@@ -34,8 +52,9 @@ function getWeather() {
 	if (loc_conditions && loc_conditions_img) {
 		setConditions(loc_conditions, loc_conditions_img, loc_temp, loc_humidity);
 	} else {
-		var url = "http://ws.geonames.org/findNearByWeatherJSON?lat=" + latitude + "&lng=" + longitude + "&callback=?";
+		var url = "http://ws.geonames.org/findNearByWeatherJSON?lat=" + latitude + "&lng=" + longitude + "&username=demo&callback=?";
 		$.getJSON(url, function(data) {
+     
 			var clouds = data.weatherObservation.clouds;
 			var weather = data.weatherObservation.weatherCondition;
 			var temp = data.weatherObservation.temperature;
@@ -166,6 +185,6 @@ function setConditions(conditions, conditions_img, temp, humidity) {
 		temp_type = "C";
 	}
 
-	$("#weather_widget").append("<img id='weather_img' src='http://www.google.com/images/weather/" + conditions_img + "' />");
-	$("#weather_widget").append("<div id='weather_conditions'><p id='weather_country'>" + country + "</p><p id='weather_city'>" + city + ", " + region + "</p><p id='weather_temp'>Temp: " + temp + "&deg; " + temp_type + "</p><p id='weather_hum'>Humidity: " + humidity + "%</p><p id='weather_cond'>" + conditions.substr(0, 1).toUpperCase() + conditions.substr(1) + "</p></div>");
+	$("#weather_widget").append("<img id='weather_img' src='http://www.google.com/images/weather/" + conditions_img + "' height='75' width='75'/>");
+	$("#weather_widget").append("<div id='weather_conditions'> <p id='weather_city'>" + city + ", " + region + "</p> <p id='weather_country'>" + country + "</p> <p id='weather_temp'>Temp: " + temp + "&deg; " + temp_type + "</p><p id='weather_cond'>Condition: " + conditions.substr(0, 1).toUpperCase() + conditions.substr(1) + "</p></div>");
 }
