@@ -1,7 +1,9 @@
 package com.group2.news;
 
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -42,7 +44,7 @@ public class NewsService {
             String name = queryUserTable(uid);
             String barName = queryForBar(object.getInt("bar"));
             //need to create string that says "at <barname> around <time>"
-            String locationTime = "at " + barName + " - " + object.getString("timePosted");
+            String locationTime = "at " + barName + " - " + formatTime(object.getString("timePosted"));
             list.add(new News(name, object.getString("message"), locationTime, uid));
 
         }
@@ -94,5 +96,23 @@ public class NewsService {
         return reader.readObject().getString("name");
 //        return "";
         
+    }
+    
+    public String formatTime(String timeStamp) {
+        
+        String s2 = "";
+        String s3 = "";
+        try {
+            Date d = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")).parse(timeStamp);
+            s2 = (new SimpleDateFormat("h:mm aa")).format(d);
+            
+            s3 = (new SimpleDateFormat("EEEE")).format(d); 
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+        return s2 + ", " + s3;
+                
     }
 }
