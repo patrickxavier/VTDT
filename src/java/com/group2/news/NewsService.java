@@ -37,16 +37,17 @@ public class NewsService {
         
         List<News> list = new ArrayList<News>();
         for(int i = 0 ; i < newsArray.size() ; i++) {
-            
+
             object = newsArray.getJsonObject(i);
             
             String uid = object.getString("username");
             String name = queryUserTable(uid);
+                
             String barName = queryForBar(object.getInt("bar"));
             //need to create string that says "at <barname> around <time>"
             String locationTime = "at " + barName + " - " + formatTime(object.getString("timePosted"));
             list.add(new News(name, object.getString("message"), locationTime, uid));
-
+           
         }
          
         return list;

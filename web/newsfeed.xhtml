@@ -21,16 +21,17 @@
         
    <h:panelGroup>
     <p:dataScroller value="#{newsFeedView.news}" var="news" chunkSize="20" mode="inline" scrollHeight="500" styleClass="css/dataScroller.css">
-        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-            <p:graphicImage value="http://graph.facebook.com/#{news.uid}/picture" height="75" width="75"/> 
+        <h:panelGrid columns="2" columnClasses="logo,detail" style="width:100%">
+
+            <p:graphicImage value="http://graph.facebook.com/#{news.uid}/picture" height="75px" width="75px"/> 
  
-            <p:outputPanel>
-                <h:panelGrid columns="1" cellpadding="4">
-                    <h:outputText value="#{news.username}" style="font-weight: bold"/>
+            <p:outputPanel >
+                <h:panelGrid frame="below">
+                    <h:outputText value="#{news.username}" style="font-size: 1.25em; font-weight: bold"/>
  
                     <h:outputText value="#{news.message}"/>
  
-                    <h:outputText value="#{news.locationTime}" style="font-weight: bold"/>
+                    <h:outputText value="#{news.locationTime}" style="font-style: italic"/>
                 </h:panelGrid>
                 
             </p:outputPanel>
@@ -40,8 +41,8 @@
     </p:dataScroller>
    </h:panelGroup>
     <h:panelGroup>
-       
-        <div align="center" id='weather_widget'></div>
+        <div align="center" id='weather_widget'></div> 
+        <p:chart type="pie" model="#{chartView.pieModel}" style="width:500px;height:300px" />
     </h:panelGroup>
     </h:panelGrid>
     </h:body>
