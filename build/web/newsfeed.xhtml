@@ -5,14 +5,14 @@
       xmlns:p="http://primefaces.org/ui">
     
     <h:head>
-        <title>Bars News Feed</title>
+        <center><h1>Bars News Feed</h1></center>
         <h:outputStylesheet name="css/styles.css"/>
     </h:head>
-    <body class="body clearfix">
-    <center><h1>Bars News Feed</h1>
-    </center>
+    <body>
+
+    <h:panelGrid columns="2" style="width:45%" columnClasses="newsFeed, other">
     <p:dataScroller value="#{newsFeedView.news}" var="news" chunkSize="10" mode="inline" scrollHeight="500">
-        <h:panelGrid columns="2" style="width:60%" columnClasses="logo,detail">
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
             <p:graphicImage value="https://graph.facebook.com/#{news.uid}/picture" /> 
  
             <p:outputPanel>
@@ -23,11 +23,13 @@
  
                     <h:outputText value="#{news.locationTime}" style="font-weight: bold"/>
                 </h:panelGrid>
-                <!--<h:outputStylesheet name="css/dataScroller.css"/>-->
+                
             </p:outputPanel>
+            <!--<p:outputStylesheet name="css/dataScroller.css"/>-->
         </h:panelGrid>
 
     </p:dataScroller>
+            </h:panelGrid>
     </body>
     
 
