@@ -20,8 +20,22 @@
 .jsfcrud_list_form {
     text-align: center;
     margin: 0 auto;
+    background-color: #500000;
 }
 
 .jsfcrud_list_form table {
     margin: 0 auto;
+    background-color: white;
+}
+.jsfcrud_list_form a{
+    color: white;
+}
+
+.ui-layout-unit-content, .ui-widget-content {
+    background-color: #500000;
+}
+
+.ui-menuitem-text {
+    color: #500000;
+    font-weight: bold;
 }
