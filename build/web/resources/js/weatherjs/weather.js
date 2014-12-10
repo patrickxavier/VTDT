@@ -3,14 +3,8 @@
  * Copyright © 2014 Ragan Walker. All rights reserved. * 
  */
 $("document").ready(function() {
-	if ($.cookie('loc_longitude') && $.cookie('loc_latitude')) {
-		getWeather();
-	} else {
-            
                 geoPlugin({
-  "geoplugin_request":"198.82.31.252",
-  "geoplugin_status":200,
-  "geoplugin_credit":"Some of the returned data includes GeoLite data created by MaxMind, available from <a href=\\'http:\/\/www.maxmind.com\\'>http:\/\/www.maxmind.com<\/a>.",
+
   "geoplugin_city":"Blacksburg",
   "geoplugin_region":"VA",
   "geoplugin_areaCode":"540",
@@ -21,65 +15,50 @@ $("document").ready(function() {
   "geoplugin_latitude":"37.1791",
   "geoplugin_longitude":"-80.351501",
   "geoplugin_regionCode":"VA",
-  "geoplugin_regionName":"Virginia",
-  "geoplugin_currencyCode":"USD",
-  "geoplugin_currencySymbol":"&#36;",
-  "geoplugin_currencySymbol_UTF8":"$",
-  "geoplugin_currencyConverter":1
+  "geoplugin_regionName":"Virginia"
 });
-	}
+
 });
 
 function geoPlugin(data) {
-	$.cookie('loc_latitude', data.geoplugin_latitude, {expires: 1});	
-	$.cookie('loc_longitude', data.geoplugin_longitude, {expires: 1});
-	$.cookie('loc_country', data.geoplugin_countryName, {expires: 1});
-	$.cookie('loc_region', data.geoplugin_region, {expires: 1});
-	$.cookie('loc_city', data.geoplugin_city, {expires: 1});
-	$.cookie('loc_country_code', data.geoplugin_countryCode, {expires: 1});
+	$.cookie('loc_latitude', data.geoplugin_latitude, {expires: 30});	
+	$.cookie('loc_longitude', data.geoplugin_longitude, {expires: 30});
+	$.cookie('loc_country', data.geoplugin_countryName, {expires: 30});
+	$.cookie('loc_region', data.geoplugin_region, {expires: 30});
+	$.cookie('loc_city', data.geoplugin_city, {expires: 30});
+	$.cookie('loc_country_code', data.geoplugin_countryCode, {expires: 30});
 	getWeather();
 }
 
 function getWeather() {
 	var latitude = $.cookie('loc_latitude');
 	var longitude = $.cookie('loc_longitude');
-	
-	var loc_conditions = $.cookie('loc_conditions');
-	var loc_conditions_img = $.cookie('loc_conditions_img');
-	var loc_temp = $.cookie('loc_temp');
-	var loc_humidity = $.cookie('loc_humidity');
-	
-	if (loc_conditions && loc_conditions_img) {
-		setConditions(loc_conditions, loc_conditions_img, loc_temp, loc_humidity);
-	} else {
-		var url = "http://ws.geonames.org/findNearByWeatherJSON?lat=" + latitude + "&lng=" + longitude + "&username=demo&callback=?";
-		$.getJSON(url, function(data) {
-     
-			var clouds = data.weatherObservation.clouds;
-			var weather = data.weatherObservation.weatherCondition;
-			var temp = data.weatherObservation.temperature;
-			var humidity = data.weatherObservation.humidity;
-			
-			var conditions_img = getConditions(clouds, weather);
-			
-			var conditions = '';
-			if (weather == 'n/a') {
-				if (clouds == 'n/a') {
-					conditions = 'fine';
-				} else {
-					conditions = clouds;
-				}
-			} else {
-				conditions = weather;
-			}
-			
-			$.cookie('loc_conditions', conditions);	
-			$.cookie('loc_conditions_img', conditions_img);	
-			$.cookie('loc_temp', temp);	
-			$.cookie('loc_humidity', humidity);	
-			setConditions(conditions, conditions_img, temp, humidity);
-		});
-	}
+            
+        var url = "http://ws.geonames.org/findNearByWeatherJSON?lat=" + latitude + "&lng=" + longitude + "&username=demo&callback=?";
+        $.getJSON(url, function(data) {
+
+                var clouds = data.weatherObservation.clouds;
+                var weather = data.weatherObservation.weatherCondition;
+                var temp = data.weatherObservation.temperature;
+
+                var conditions_img = getConditions(clouds, weather);
+
+                var conditions = '';
+                if (weather == 'n/a') {
+                        if (clouds == 'n/a') {
+                                conditions = 'fine';
+                        } else {
+                                conditions = clouds;
+                        }
+                } else {
+                        conditions = weather;
+                }
+
+                $.cookie('loc_conditions', conditions);	
+                $.cookie('loc_conditions_img', conditions_img);	
+                $.cookie('loc_temp', temp);	
+                setConditions(conditions, conditions_img, temp);
+        });
 }
 
 function getConditions(clouds, weather) {
@@ -173,7 +152,7 @@ function getConditions(clouds, weather) {
 	}
 }
 
-function setConditions(conditions, conditions_img, temp, humidity) {
+function setConditions(conditions, conditions_img, temp) {
 	var country = $.cookie('loc_country');
 	var region = $.cookie('loc_region');
 	var city = $.cookie('loc_city');
@@ -185,6 +164,6 @@ function setConditions(conditions, conditions_img, temp, humidity) {
 		temp_type = "C";
 	}
 
-	$("#weather_widget").append("<img id='weather_img' src='http://www.google.com/images/weather/" + conditions_img + "' height='75' width='75'/>");
+	$("#weather_widget").append("<img id='weather_img' src='http://www.google.com/images/weather/" + conditions_img + "' height='75' width='75' />");
 	$("#weather_widget").append("<div id='weather_conditions'> <p id='weather_city'>" + city + ", " + region + "</p> <p id='weather_country'>" + country + "</p> <p id='weather_temp'>Temp: " + temp + "&deg; " + temp_type + "</p><p id='weather_cond'>Condition: " + conditions.substr(0, 1).toUpperCase() + conditions.substr(1) + "</p></div>");
 }

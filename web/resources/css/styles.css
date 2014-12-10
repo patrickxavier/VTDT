@@ -40,26 +40,29 @@ h2 {
 }
 .jqplot-series-canvas {
      background-color: #500000; 
-     border-color: #FFFFFF;
+/*     border-color: #FFFFFF;
      border-width: 6px;
-     border-style: solid;
+     border-style: solid;*/
+}
+
+.jqplot-grid-canvas {
+   display: none;
 }
 .jsfcrud_list_form {
 /*    align-content: center;*/
     text-align: center;
     padding-top: 20px;
 }
-table.jqplot-table-legend{
+table.jqplot-table-legend {
     color: white;
     background-color: transparent;
-    border: none;
+    border: 0 solid #500000;
     font-size: 1.25em;
 }
+
+
 .text {
-    /*font-size: 1em;*/
-    /*font-weight: 400;*/
-    /*line-height: 1.38;*/
-    /*letter-spacing: -2px;*/
+    
     color: rgb(255, 255, 255);
     text-align: center;
 }
@@ -110,24 +113,28 @@ a:visited {
     #weather_widget * {
 	margin:0px;
 	padding:0px;
-	font-family:arial;
+	font-family:Copperplate;
 	font-size:1.10em;
+        color: #FFFFFF;
+        margin-left: 30px;
 }
 
     #weather_widget {
 
-            background:#FFFFFF;
+            background-color:#500000;
             width:500px;
             padding:10px;
             overflow:auto;
     }
 
-    #weather_img {
+/*    #weather_img {
             float:left;
-            padding-right:20px;
-            padding-top:10px;
+           padding-right:20px;
+            
             padding-left:20px;
-    }
+            margin-right: 20px;
+            /*border-radius: 10px;
+    }*/
 
     #weather_city {
             font-weight:bold;
@@ -149,34 +156,27 @@ a:visited {
             float:left;
     }
     
-    .ui-datascroller {
-    }
-
-    .ui-datascroller-inline .ui-datascroller-header {
-        text-align: left;
-        /*padding: 4px 10px;*/
-        border-bottom: 2px;
-    }
-
     .ui-datascroller-inline .ui-datascroller-content {
-        padding:4px 10px;
+        padding: 4px 10px;
         text-align: left;
-    }
-
-    .ui-datascroller-inline .ui-datascroller-content {
         overflow: auto;
+        color: #FFFFFF;
+        background-color: #500000;
+        border-style: none;
+
     }
 
     .ui-datascroller-inline .ui-datascroller-list {
-        list-style-type: none; 
+        /*list-style-type: none;*/ 
         margin: 0;
         padding: 0;
     }
 
     .ui-datascroller-inline .ui-datascroller-item {
-        border-color: #000000;
-        border-width: 6px;
-        border-style: solid;
+        border-bottom-color: #FFFFFF;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        background-color: #500000;
     }
 
     .ui-datascroller .ui-datascroller-loader {
@@ -192,4 +192,10 @@ a:visited {
         margin: 0;
         display: inline-block;
     }
+    
+    img{
+        border-radius: 10px;
+        padding-top: 5px;
+    }
+    
 }

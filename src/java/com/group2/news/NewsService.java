@@ -98,19 +98,34 @@ public class NewsService {
     
     public String formatTime(String timeStamp) {
         
-        String s2 = "";
-        String s3 = "";
+        String timeDate = "";
+        String day = "";
+        String fullDate = "";
+        
         try {
-            Date d = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")).parse(timeStamp);
-            s2 = (new SimpleDateFormat("h:mm aa")).format(d);
             
-            s3 = (new SimpleDateFormat("EEEE")).format(d); 
+            Date d = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")).parse(timeStamp);
+            timeDate = (new SimpleDateFormat("h:mm aa")).format(d);
+            
+            fullDate = (new SimpleDateFormat("yyyy-MM-dd")).format(d);
+            
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+
+            if (fullDate.equals(dateFormat.format(date))) {
+                day = " today";
+            }
+            else {
+                day = " on " + (new SimpleDateFormat("EEEE")).format(d); 
+            }
+            
         }
         catch(Exception e) {
             e.printStackTrace();
         }
         
-        return s2 + " on " + s3;
+        
+        return timeDate + day;
                 
     }
 }

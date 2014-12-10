@@ -5,28 +5,28 @@
       xmlns:p="http://primefaces.org/ui">
     
     <h:head>
-        <center><h1>Bars News Feed</h1></center>
-        <h:outputStylesheet name="css/styles.css"/>
+<!--        <center><h1>Bars News Feed</h1></center>-->
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-        <script type="text/javascript">
-	        google.load("jquery", "2.1.0");
-        </script>
+<!--        <script type="text/javascript">
+	        google.load("jquery", "1.3.2");
+        </script>-->
         <script type="text/javascript" src="resources/js/weatherjs/jquery.cookie.js"></script>
         <script type="text/javascript" src="resources/js/weatherjs/weather.js"></script>
     </h:head>
     <h:body>
-         <!--<div id='weather_widget'></div>-->
-    <h:panelGrid columns="2" style="width:45%" columnClasses="newsFeed, other">
+                 <h:outputStylesheet name="css/styles.css"/>
+
+                 <h:panelGrid columns="2" columnClasses="newsFeed, other" cellspacing="15px">
         
    <h:panelGroup>
-    <p:dataScroller value="#{newsFeedView.news}" var="news" chunkSize="20" mode="inline" scrollHeight="500" styleClass="css/dataScroller.css">
-        <h:panelGrid columns="2" columnClasses="logo,detail" style="width:100%">
+    <p:dataScroller value="#{newsFeedView.news}" var="news" chunkSize="20" mode="inline" scrollHeight="500">
+        <h:panelGrid columns="2" columnClasses="logo,detail" style="width:100%" >
 
             <p:graphicImage value="http://graph.facebook.com/#{news.uid}/picture" height="75px" width="75px"/> 
  
             <p:outputPanel >
-                <h:panelGrid frame="below">
+                <h:panelGrid>
                     <h:outputText value="#{news.username}" style="font-size: 1.25em; font-weight: bold"/>
  
                     <h:outputText value="#{news.message}"/>
@@ -41,8 +41,11 @@
     </p:dataScroller>
    </h:panelGroup>
     <h:panelGroup>
-        <div align="center" id='weather_widget'></div> 
+       
+        <div align="center" id='weather_widget'></div>
+
         <p:chart type="pie" model="#{chartView.pieModel}" style="width:500px;height:300px" />
+        
     </h:panelGroup>
     </h:panelGrid>
     </h:body>

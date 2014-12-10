@@ -73,4 +73,6 @@ public class ChartView implements Serializable {
     public PieChartModel getPieModel() {
         return pieModel;
     }
+    
+    
 }
