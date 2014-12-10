@@ -29,7 +29,7 @@ public class NewsService {
     private JsonReader reader;
     private JsonArray newsArray;
     private JsonObject object;
-    private static final String URL = "http://localhost:8080/VTDT/webresources/";
+    private static final String URL = "http://jupiter.cs.vt.edu/VTDT-1.0/webresources/";
      
     public List<News> createNews () {
         
@@ -49,7 +49,10 @@ public class NewsService {
             list.add(new News(name, object.getString("message"), locationTime, uid));
            
         }
-         
+//         System.out.println(list.toString());
+         for(News n : list) {
+             System.out.println(n.getMessage());
+         }
         return list;
     }
     

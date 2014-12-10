@@ -30,7 +30,7 @@ public class ChartView implements Serializable {
     private JsonArray barArray;
     private JsonArray usersArray;
     private JsonObject object;
-    private static final String URL = "http://localhost:8080/VTDT/webresources/";
+    private static final String URL = "http://jupiter.cs.vt.edu/VTDT-1.0/webresources/";
     
     @PostConstruct
     public void init() {
