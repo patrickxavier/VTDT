@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="menuForm">
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <script src="resources/js/facebook.js" type="text/javascript"></script>
+        <p:menubar>
+            <p:menuitem value="Home" outcome="/faces/welcome.xhtml" icon="ui-icon-home"/>
+            <p:menuitem value="Feedback" outcome="/faces/feedback.xhtml"/>
+            <p:submenu styleClass="admin_access" label="Tables">
+                <p:menuitem value="Bars" outcome="/bars/List.xhtml" />
+                <p:menuitem value="Specials" outcome="/specials/List.xhtml" />
+                <p:menuitem value="Users" outcome="/users/List.xhtml" />
+                <p:menuitem value="Friends" outcome="/friends/List.xhtml" />
+                <p:menuitem value="Newsfeed" outcome="/newsfeed/List.xhtml" />
+            </p:submenu>
+            <p:menuitem id="logout" value="Logout" />
+        </p:menubar>
+    </h:form>
+<script>
+            $(document).ready(function() {
+               $("#menuForm\\:logout").parent().css("float","right"); 
+            });
+            
+            $("#admin_access").click(function () {
+                window.location = "bars/List.xhtml";
+            });
+            
+            function username() {
+                FB.getLoginStatus(function (response) {
+                    if (response.status === 'connected') {
+                        FB.api('/me', function (me) {
+                            $("#menuForm\\:logout span").text(me.name + " - Logout");
+                        });
+                    }
+                });
+            }
+            
+            function adminCheck() {
+                FB.getLoginStatus(function (response) {
+                    console.log('statusChangeCallback');
+                    console.log(response);
+
+                    if (response.status === 'connected') {
+                        var uid = response.authResponse.userID;
+                        console.log(uid);
+
+                        $.get("/VTDT/webresources/com.group2.vtdt.users/isAdmin/" + uid, function (data) {
+                            if (data === "true") {
+                                $('.admin_access').show();
+                            } else {
+                                $('.admin_access').hide();
+                            }
+                        });
+                    }
+                });
+            }
+
+            $("#menuForm\\:logout").click(function () {
+                FB.getLoginStatus(function (response) {
+                    if (response.status === 'connected') {
+                        FB.logout(function (response) {
+                            window.location = "/VTDT";
+                        });
+                    }
+                });
+            });
+        </script>
+</html>
