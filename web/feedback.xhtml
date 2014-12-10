@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Feedback</title>
+        <h:outputStylesheet name="css/styles.css"/>
+    </h:head>
+    <body class="body clearfix">
+        <ui:include src="/header.xhtml"></ui:include>
+        
+        <center><h1>Feedback</h1>
+            <h:form>           
+                <p:editor id="editor" widgetVar="editorWidget" value="#{editorView.text}" width="600" />
+                <p:growl id="growl" showDetail="true" sticky="false" />
+                <h:panelGrid columns="2" style="margin-top: 10px">
+                    <p:commandButton value="Submit" action="#{editorView.sendMessage}" actionListener="#{buttonView.addMessage}" update="growl" />
+
+                    <p:commandButton value="Clear" type="button" onclick="PF('editorWidget').clear();"/>
+                </h:panelGrid>
+            </h:form> 
+
+        </center>
+    </body>
+
+</html>
+

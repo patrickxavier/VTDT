@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <script src="../resources/js/facebook.js" type="text/javascript"></script>
+        <h:outputStylesheet name="css/styles.css"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem style="font-size: 1.5em" value="Home" outcome="/faces/welcome.xhtml" icon="ui-icon-home"/>
+                        <p:menuitem style="font-size: 1.5em" value="Feedback" outcome="/faces/feedback.xhtml" />
+                        <p:submenu style="font-size: 1.5em" styleClass="admin_access" label="Tables" >
+                            <p:menuitem style="font-size: 1.5em" value="Bars" outcome="/bars/List.xhtml" />
+                            <p:menuitem style="font-size: 1.5em" value="Specials" outcome="/specials/List.xhtml" />
+                            <p:menuitem style="font-size: 1.5em" value="Users" outcome="/users/List.xhtml" />
+                            <p:menuitem style="font-size: 1.5em" value="Friends" outcome="/friends/List.xhtml" />
+                            <p:menuitem style="font-size: 1.5em" value="Newsfeed" outcome="/newsfeed/List.xhtml" />
+                        </p:submenu>
+                        <p:menuitem style="font-size: 1.5em" id="logout" value="Logout" />
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+    
+    <script>
+            $(document).ready(function() {
+               $("#menuForm\\:logout").parent().css("float","right"); 
+            });
+            
+            $("#admin_access").click(function () {
+                window.location = "bars/List.xhtml";
+            });
+            
+            function username() {
+                FB.getLoginStatus(function (response) {
+                    if (response.status === 'connected') {
+                        FB.api('/me', function (me) {
+                            $("#menuForm\\:logout span").text(me.name + " - Logout");
+                        });
+                    }
+                });
+            }
+            
+            function adminCheck() {
+                FB.getLoginStatus(function (response) {
+                    console.log('statusChangeCallback');
+                    console.log(response);
+
+                    if (response.status === 'connected') {
+                        var uid = response.authResponse.userID;
+                        console.log(uid);
+
+                        $.get("/VTDT/webresources/com.group2.vtdt.users/isAdmin/" + uid, function (data) {
+                            if (data === "true") {
+                                $('.admin_access').show();
+                            } else {
+                                $('.admin_access').hide();
+                            }
+                        });
+                    }
+                });
+            }
+
+            $("#menuForm\\:logout").click(function () {
+                FB.getLoginStatus(function (response) {
+                    if (response.status === 'connected') {
+                        FB.logout(function (response) {
+                            window.location = "/VTDT";
+                        });
+                    }
+                });
+            });
+        </script>
+
+</html>

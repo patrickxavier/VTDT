@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBarsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBarsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{barsController.selected.id}" title="#{bundle.CreateBarsTitle_id}" required="true" requiredMessage="#{bundle.CreateBarsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateBarsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{barsController.selected.name}" title="#{bundle.CreateBarsTitle_name}" required="true" requiredMessage="#{bundle.CreateBarsRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateBarsLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{barsController.selected.address}" title="#{bundle.CreateBarsTitle_address}" />
+                    <h:outputLabel value="#{bundle.CreateBarsLabel_phoneNumber}" for="phoneNumber" />
+                    <h:inputText id="phoneNumber" value="#{barsController.selected.phoneNumber}" title="#{bundle.CreateBarsTitle_phoneNumber}" />
+                    <h:outputLabel value="#{bundle.CreateBarsLabel_website}" for="website" />
+                    <h:inputText id="website" value="#{barsController.selected.website}" title="#{bundle.CreateBarsTitle_website}" />
+                    <h:outputLabel value="#{bundle.CreateBarsLabel_latitude}" for="latitude" />
+                    <h:inputText id="latitude" value="#{barsController.selected.latitude}" title="#{bundle.CreateBarsTitle_latitude}" required="true" requiredMessage="#{bundle.CreateBarsRequiredMessage_latitude}"/>
+                    <h:outputLabel value="#{bundle.CreateBarsLabel_longitude}" for="longitude" />
+                    <h:inputText id="longitude" value="#{barsController.selected.longitude}" title="#{bundle.CreateBarsTitle_longitude}" required="true" requiredMessage="#{bundle.CreateBarsRequiredMessage_longitude}"/>
+                   
+
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{barsController.create}" value="#{bundle.CreateBarsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{barsController.prepareList}" value="#{bundle.CreateBarsShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

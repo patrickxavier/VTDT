@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSpecialsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSpecialsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{specialsController.selected.id}" title="#{bundle.CreateSpecialsTitle_id}" required="true" requiredMessage="#{bundle.CreateSpecialsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialsLabel_menuItem}" for="menuItem" />
+                    <h:inputText id="menuItem" value="#{specialsController.selected.menuItem}" title="#{bundle.CreateSpecialsTitle_menuItem}" required="true" requiredMessage="#{bundle.CreateSpecialsRequiredMessage_menuItem}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialsLabel_price}" for="price" />
+                    <h:inputText id="price" value="#{specialsController.selected.price}" title="#{bundle.CreateSpecialsTitle_price}" required="true" requiredMessage="#{bundle.CreateSpecialsRequiredMessage_price}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialsLabel_days}" for="days" />
+                    <h:inputText id="days" value="#{specialsController.selected.days}" title="#{bundle.CreateSpecialsTitle_days}" required="true" requiredMessage="#{bundle.CreateSpecialsRequiredMessage_days}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialsLabel_startTime}" for="startTime" />
+                    <h:inputText id="startTime" value="#{specialsController.selected.startTime}" title="#{bundle.CreateSpecialsTitle_startTime}" required="true" requiredMessage="#{bundle.CreateSpecialsRequiredMessage_startTime}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSpecialsLabel_endTime}" for="endTime" />
+                    <h:inputText id="endTime" value="#{specialsController.selected.endTime}" title="#{bundle.CreateSpecialsTitle_endTime}" required="true" requiredMessage="#{bundle.CreateSpecialsRequiredMessage_endTime}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSpecialsLabel_bar}" for="bar" />
+                    <h:inputText id="bar" value="#{specialsController.selected.bar}" title="#{bundle.CreateSpecialsTitle_bar}" required="true" requiredMessage="#{bundle.CreateSpecialsRequiredMessage_bar}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{specialsController.create}" value="#{bundle.CreateSpecialsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{specialsController.prepareList}" value="#{bundle.CreateSpecialsShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
