@@ -62,8 +62,8 @@ public class ChartView implements Serializable {
             }
         }
 
-        pieModel.setTitle("People Checked In");
-        pieModel.setLegendPosition("w");
+//        pieModel.setTitle("People Checked In");
+        pieModel.setLegendPosition("e");
         pieModel.setShowDataLabels(true);
         pieModel.setDataFormat("value");
         

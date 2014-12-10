@@ -29,7 +29,7 @@ public class NewsService {
     private JsonReader reader;
     private JsonArray newsArray;
     private JsonObject object;
-    private static final String URL = "http://jupiter.cs.vt.edu/VTDT-1.0/webresources/";
+    private static final String URL = "http://localhost:8080/VTDT/webresources/";
      
     public List<News> createNews () {
         
@@ -37,16 +37,17 @@ public class NewsService {
         
         List<News> list = new ArrayList<News>();
         for(int i = 0 ; i < newsArray.size() ; i++) {
-            
+
             object = newsArray.getJsonObject(i);
             
             String uid = object.getString("username");
             String name = queryUserTable(uid);
+                
             String barName = queryForBar(object.getInt("bar"));
             //need to create string that says "at <barname> around <time>"
             String locationTime = "at " + barName + " - " + formatTime(object.getString("timePosted"));
             list.add(new News(name, object.getString("message"), locationTime, uid));
-
+           
         }
          
         return list;
@@ -91,28 +92,40 @@ public class NewsService {
         jsonString = response.readEntity(String.class);
 
         reader = Json.createReader(new StringReader(jsonString));
-//        System.out.println(jsonString.);
-//        reader.re
         return reader.readObject().getString("name");
-//        return "";
         
     }
     
     public String formatTime(String timeStamp) {
         
-        String s2 = "";
-        String s3 = "";
+        String timeDate = "";
+        String day = "";
+        String fullDate = "";
+        
         try {
-            Date d = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")).parse(timeStamp);
-            s2 = (new SimpleDateFormat("h:mm aa")).format(d);
             
-            s3 = (new SimpleDateFormat("EEEE")).format(d); 
+            Date d = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")).parse(timeStamp);
+            timeDate = (new SimpleDateFormat("h:mm aa")).format(d);
+            
+            fullDate = (new SimpleDateFormat("yyyy-MM-dd")).format(d);
+            
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+
+            if (fullDate.equals(dateFormat.format(date))) {
+                day = " today";
+            }
+            else {
+                day = " on " + (new SimpleDateFormat("EEEE")).format(d); 
+            }
+            
         }
         catch(Exception e) {
             e.printStackTrace();
         }
         
-        return s2 + ", " + s3;
+        
+        return timeDate + day;
                 
     }
 }

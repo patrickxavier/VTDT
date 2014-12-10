@@ -39,10 +39,10 @@ h2 {
     font-size: 1.5em;
 }
 .jqplot-series-canvas {
-     background-color: #500000; 
+    background-color: #500000; 
 }
 .jsfcrud_list_form {
-/*    align-content: center;*/
+    /*    align-content: center;*/
     text-align: center;
     padding-top: 20px;
 }
@@ -95,9 +95,93 @@ table.jqplot-table-legend{
             text-align: left;
 
         }
-
-
-
-
     }
+}
+
+#weather_widget * {
+    margin:0px;
+    padding:0px;
+    font-family:Copperplate;
+    font-size:1.10em;
+    color: #FFFFFF;
+    margin-left: 30px;
+}
+
+#weather_widget {
+
+    background-color:#500000;
+    width:500px;
+    padding:10px;
+    overflow:auto;
+}
+
+/*    #weather_img {
+            float:left;
+           padding-right:20px;
+            
+            padding-left:20px;
+            margin-right: 20px;
+            /*border-radius: 10px;
+    }*/
+
+#weather_city {
+    font-weight:bold;
+}
+
+#weather_country {
+    font-size:0.80em;
+}
+
+#weather_temp {
+    margin-top:5px;
+}
+
+#weather_cond {
+    margin-top:5px;
+}
+
+#weather_conditions {
+    float:left;
+}
+
+.ui-datascroller-inline .ui-datascroller-content {
+    padding: 4px 10px;
+    text-align: left;
+    overflow: auto;
+    color: #FFFFFF;
+    background-color: #500000;
+    border-style: none;
+
+}
+
+.ui-datascroller-inline .ui-datascroller-list {
+    /*list-style-type: none;*/ 
+    margin: 0;
+    padding: 0;
+}
+
+.ui-datascroller-inline .ui-datascroller-item {
+    border-bottom-color: #FFFFFF;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    background-color: #500000;
+}
+
+.ui-datascroller .ui-datascroller-loader {
+    text-align: center;
+    padding: 4px 10px;
+}
+
+.ui-datascroller .ui-datascroller-loading {
+    background: url("#{resource['primefaces:datascroller/images/loading.gif']}") center center no-repeat;
+    width: 220px;
+    height: 19px;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+img{
+    border-radius: 10px;
+    padding-top: 5px;
 }
