@@ -49,7 +49,7 @@
                         var uid = response.authResponse.userID;
                         console.log(uid);
 
-                        $.get("/VTDT/webresources/com.group2.vtdt.users/isAdmin/" + uid, function (data) {
+                        $.get("/VTDT-1.0/webresources/com.group2.vtdt.users/isAdmin/" + uid, function (data) {
                             if (data === "true") {
                                 $('.admin_access').show();
                             } else {
@@ -64,7 +64,7 @@
                 FB.getLoginStatus(function (response) {
                     if (response.status === 'connected') {
                         FB.logout(function (response) {
-                            window.location = "/VTDT";
+                            window.location = "/VTDT-1.0";
                         });
                     }
                 });

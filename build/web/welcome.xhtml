@@ -20,7 +20,7 @@
 
                  <h:panelGrid style="padding-top:2em; height:100%;text-align:center" columns="2" columnClasses="newsFeed, other" cellspacing="15px">
         
-   <h:panelGroup >
+   <h:panelGroup>
     <p:dataScroller value="#{newsFeedView.news}" var="news" chunkSize="20" mode="inline" scrollHeight="700">
         <h:panelGrid columns="2" columnClasses="logo,detail" style="width:100%" >
 
@@ -45,6 +45,7 @@
        <div id="panel">
     <b>Start: </b>
     <select id="start" onchange="calcRoute();">
+        <option id="currLoc1" value="currentLocation">Current Location</option>
         <option value="217 College Avenue, Blacksburg VA">Top of the Stairs</option>
         <option value="322 North Main Street, Blacksburg VA">Hokie House</option>
         <option value="111 North Main Street, Blacksburg VA">Champs</option>
@@ -58,6 +59,7 @@
     </select>
     <b>End: </b>
     <select id="end" onchange="calcRoute();">
+        <option id="currLoc2" value="currentLocation">Current Location</option>
         <option value="217 College Avenue, Blacksburg VA">Top of the Stairs</option>
         <option value="322 North Main Street, Blacksburg VA">Hokie House</option>
         <option value="111 North Main Street, Blacksburg VA">Champs</option>

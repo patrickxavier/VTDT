@@ -37,7 +37,6 @@ Created by Sanchit Chadha on 2014.11.19
 
                 <p:growl id="growl" life="2000" />
 
-                <!--<p:commandButton value="Continue" id="continue" onclick="continueClick();" styleClass="ui-priority-primary" />-->
 
             </h:form>
 
@@ -51,7 +50,7 @@ Created by Sanchit Chadha on 2014.11.19
                             var uid = response.authResponse.userID;
                             console.log(uid);
 
-                            $.get("/VTDT/webresources/com.group2.vtdt.users/findByUsername/" + uid, function (data) {
+                            $.get("/VTDT-1.0/webresources/com.group2.vtdt.users/findByUsername/" + uid, function (data) {
                                 if (data.length > 0) {
                                     window.location = "faces/welcome.xhtml";
                                 } else {
