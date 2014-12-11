@@ -33,7 +33,7 @@ function geoPlugin(data) {
 function getWeather() {
 	var latitude = $.cookie('loc_latitude');
 	var longitude = $.cookie('loc_longitude');
-        var url = "http://ws.geonames.org/findNearByWeatherJSON?lat=" + latitude + "&lng=" + longitude + "&username=vtdt";
+        var url = "http://api.geonames.org/findNearByWeatherJSON?lat=" + latitude + "&lng=" + longitude + "&username=vtdt";
 //        var url = "http://ws.geonames.org/findNearByWeatherJSON?lat=" + latitude + "&lng=" + longitude + "&username=demo&callback=?";
         $.getJSON(url, function(data) {
                 console.log("DATA " + data.weatherObservation);
